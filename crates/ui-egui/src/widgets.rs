@@ -632,40 +632,18 @@ pub fn progress_notice(app: &PdfCraftApp, ctx: &egui::Context) -> bool {
     cancel
 }
 
-/// The ArtCraft wordmark (Storyteller's brand, docs/brand/; not open source), sized to `height`.
-pub fn artcraft_logo(ui: &mut egui::Ui, height: f32) -> Response {
-    let dark = ui.visuals().dark_mode;
-    let (uri, bytes): (&str, &'static [u8]) = if dark {
-        ("bytes://artcraft-logo-white.svg", include_bytes!("../../../docs/brand/artcraft-logo-white.svg"))
-    } else {
-        ("bytes://artcraft-logo.svg", include_bytes!("../../../docs/brand/artcraft-logo.svg"))
-    };
-    ui.add(egui::Image::from_bytes(uri, bytes).max_height(height).alt_text("ArtCraft"))
+/// Original typographic mark; no upstream trademark artwork is embedded.
+pub fn xandex_mark(ui: &mut egui::Ui, size: f32) -> Response {
+    ui.label(egui::RichText::new("X").font(theme::semibold(size)).color(egui::Color32::from_rgb(0x16, 0xa0, 0x85)))
 }
 
-/// The ArtCraft mark (brand blue, works on light and dark), `size` points square.
-pub fn artcraft_mark(ui: &mut egui::Ui, size: f32) -> Response {
-    ui.add(
-        egui::Image::from_bytes("bytes://artcraft-mark.svg", include_bytes!("../../../docs/brand/artcraft-mark.svg"))
-            .fit_to_exact_size(vec2(size, size))
-            .alt_text("ArtCraft"),
-    )
-}
-
-/// Buttons for every community link (`pdfcraft_engine::links`), Discord first and prominent.
-/// Returns the registry command of the one clicked.
+/// Credits link for this independent fork; does not advertise an upstream support channel.
 pub fn community_links(ui: &mut egui::Ui) -> Option<&'static str> {
-    let mut clicked = None;
-    ui.horizontal_wrapped(|ui| {
-        ui.spacing_mut().item_spacing = vec2(8.0, 8.0);
-        for (i, l) in pdfcraft_engine::links::LINKS.iter().enumerate() {
-            let resp = if i == 0 { icon_pill(ui, l.icon, tl!("Join our Discord"), true) } else { icon_pill(ui, l.icon, tl!(l.label), false) };
-            if resp.on_hover_text(l.url).clicked() {
-                clicked = Some(l.command);
-            }
-        }
-    });
-    clicked
+    if icon_pill(ui, "code-xml", tl!("Original PdfCraft project"), false).on_hover_text(pdfcraft_engine::links::GITHUB).clicked() {
+        Some("help.github")
+    } else {
+        None
+    }
 }
 
 /// [`icon_pill`] with a ▾ part at its end that opens a menu of related choices. Returns the

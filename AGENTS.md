@@ -202,3 +202,14 @@ PdfCraft opens files from strangers, and people trust it with their work. A malf
 - Workflows in `.github/workflows/` call the shared workflows in [`storytold/craft-common-actions`](https://github.com/storytold/craft-common-actions) at `@main`, with their inputs and secrets. No other jobs: if no shared workflow does what's needed, it doesn't go here.
 - Don't add or change CI in a feature or fix PR. If the existing workflows can't build or test a change, link an existing craft-common-actions issue or PR, or open a new issue, or a PR only for a small fix that is safe for every app and does not increase CI time.
 - Some workflow files here still run their own jobs. Don't add to them. Moving a job into craft-common-actions is its own task, never part of another PR, and the job stays here until a shared workflow runs it.
+
+
+## XandexPDF Studio fork scope
+
+This is an independent, free Mozambique edition, not an upstream Craft contribution.
+The user authorised its fork, renaming and pt-MZ adaptation. Keep upstream licences and
+credits. In this fork, `localization/locales` is the versioned translation input,
+defaulting to pt-MZ; `CRAFT_I18N_DIR` remains an optional override. Attribute each
+catalog in ATTRIBUTION.toml. Remove ArtCraft marks from shipped UI and assets.
+Upstream workflows and packaging are historical inputs, not Xandex release procedures.
+Do not publish a binary until native tests, packaging and offline checks pass.

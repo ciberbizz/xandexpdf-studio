@@ -16,7 +16,7 @@ sha256 = "cd7032ea33b71427f188e34ffb4aee9d6868a57fd196037c5c8b2be03a2a0352"
 [[document]]
 source = "NOTICE"
 destination = "NOTICE"
-sha256 = "d9ba162ad2bc95d22ab9885065e253bb823bd6795068828e7b39858344b660eb"
+sha256 = "f2f47c9c063cc8c7dbeb5fbadb52e092a87353249f2b0a852cbf9d0c23b1d162"
 
 [[document]]
 source = "assets/app-icon/LICENSE-document.txt"
@@ -177,3 +177,15 @@ crate = "icu_segmenter_data"
 path = "data/segmenter_dictionary_extended_v1.rs.data"
 licence = "Unicode-3.0"
 documents = ["licenses/ICU4X-LICENSE.txt"]
+
+[[document]]
+source = "localization/LICENSE-MIT"
+licences = ["MIT"]
+destination = "localization/LICENSE-MIT"
+sha256 = "55c6959261d5cc6c6234c7e636383c2d1ea65b21abcddc181fad1c8a2d2bea5b"
+
+[[document]]
+source = "localization/LICENSE-APACHE"
+licences = ["Apache-2.0"]
+destination = "localization/LICENSE-APACHE"
+sha256 = "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"

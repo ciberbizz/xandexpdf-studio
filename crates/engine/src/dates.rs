@@ -63,7 +63,7 @@ const CKB_DAYS: [&str; 7] = ["یەکشەممە", "دووشەممە", "سێشەم
 
 /// The languages month and weekday names can be written in (Preferences ▸ Date format ▸ Language):
 /// the interface languages, in the same order and with the same names.
-pub static DATE_LANGUAGES: [DateLanguage; 35] = [
+pub static DATE_LANGUAGES: [DateLanguage; 36] = [
     DateLanguage {
         code: "en",
         name: "English",
@@ -125,6 +125,15 @@ pub static DATE_LANGUAGES: [DateLanguage; 35] = [
     DateLanguage {
         code: "pt-br",
         name: "Português (Brasil)",
+        months: ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"],
+        months_with_day: None,
+        months_short: ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
+        days: ["domingo", "segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado"],
+        days_short: ["dom", "seg", "ter", "qua", "qui", "sex", "sáb"],
+    },
+    DateLanguage {
+        code: "pt-mz",
+        name: "Português de Moçambique",
         months: ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"],
         months_with_day: None,
         months_short: ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
@@ -884,6 +893,7 @@ mod tests {
     fn names_follow_the_date_language() {
         assert_eq!(in_lang("dddd, d \\de mmmm \\de yyyy", "es"), "sábado, 7 de marzo de 2026");
         assert_eq!(in_lang("ddd d mmm", "pt-br"), "sáb 7 mar");
+        assert_eq!(in_lang("ddd d mmm", "pt-mz"), "sáb 7 mar");
         assert_eq!(in_lang("dddd d mmmm yyyy", "fr"), "samedi 7 mars 2026");
         assert_eq!(in_lang("dddd d mmmm yyyy", "it"), "sabato 7 marzo 2026");
         assert_eq!(in_lang("ddd d mmm", "it"), "sab 7 mar");

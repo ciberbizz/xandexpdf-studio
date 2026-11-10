@@ -44,7 +44,7 @@ impl PdfCraftApp {
         let mark = if dirty { " •" } else { "" };
         let titled = |name: Option<String>| {
             name.or_else(|| self.combine_showing().then(|| tl!("Combine files").to_owned()))
-                .map_or_else(|| "PdfCraft".to_owned(), |name| format!("{name}{mark} — PdfCraft"))
+                .map_or_else(|| "XandexPDF Studio".to_owned(), |name| format!("{name}{mark} — XandexPDF Studio"))
         };
         let title = titled(front.and_then(|i| crate::canvas::tab_label(self, i)));
         // The web page's title is what an embedding host reads to tell which file opened, so it
@@ -111,7 +111,7 @@ impl PdfCraftApp {
             invert_middle_drag: false,
             animation_effects: motion::AnimationEffects::default(),
             motion: motion::Motion::default(),
-            language: i18n::AUTO.to_string(),
+            language: "pt-mz".to_string(),
             ui_scale: None,
             system_text_scale: 1.0,
             ui_scale_applied: None,
@@ -149,7 +149,7 @@ impl PdfCraftApp {
             last_session: Default::default(),
             quit_session: None,
             reload_changed_files: true,
-            update_check_at_start: true,
+            update_check_at_start: false,
             show_secured_notice: true,
             text_links: true,
             always_default_view: false,
