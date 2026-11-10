@@ -168,7 +168,7 @@ impl RecoveryStore {
     }
 
     /// `Recovery` in the portable data folder in portable mode ([`crate::portable`]), otherwise
-    /// the platform's per-user data folder: `~/Library/Application Support/PdfCraft/Recovery`
+    /// the platform's per-user data folder: `~/Library/Application Support/XandexPDFStudio/Recovery`
     /// (macOS), `%LOCALAPPDATA%\PdfCraft\Recovery` (Windows), or
     /// `$XDG_DATA_HOME/pdfcraft/recovery` / `~/.local/share/pdfcraft/recovery` (others).
     pub fn default_dir() -> Option<PathBuf> {
@@ -177,11 +177,11 @@ impl RecoveryStore {
         }
         let env = |k: &str| std::env::var_os(k).filter(|v| !v.is_empty()).map(PathBuf::from);
         if cfg!(target_os = "macos") {
-            env("HOME").map(|h| h.join("Library/Application Support/PdfCraft/Recovery"))
+            env("HOME").map(|h| h.join("Library/Application Support/XandexPDFStudio/Recovery"))
         } else if cfg!(windows) {
-            env("LOCALAPPDATA").map(|d| d.join("PdfCraft").join("Recovery"))
+            env("LOCALAPPDATA").map(|d| d.join("XandexPDFStudio").join("Recovery"))
         } else {
-            env("XDG_DATA_HOME").or_else(|| env("HOME").map(|h| h.join(".local/share"))).map(|d| d.join("pdfcraft/recovery"))
+            env("XDG_DATA_HOME").or_else(|| env("HOME").map(|h| h.join(".local/share"))).map(|d| d.join("xandexpdf-studio/recovery"))
         }
     }
 
@@ -200,11 +200,11 @@ pub fn default_dictionary_dir() -> Option<PathBuf> {
     }
     let env = |k: &str| std::env::var_os(k).filter(|v| !v.is_empty()).map(PathBuf::from);
     if cfg!(target_os = "macos") {
-        env("HOME").map(|h| h.join("Library/Application Support/PdfCraft/Dictionary"))
+        env("HOME").map(|h| h.join("Library/Application Support/XandexPDFStudio/Dictionary"))
     } else if cfg!(windows) {
-        env("LOCALAPPDATA").map(|d| d.join("PdfCraft").join("Dictionary"))
+        env("LOCALAPPDATA").map(|d| d.join("XandexPDFStudio").join("Dictionary"))
     } else {
-        env("XDG_DATA_HOME").or_else(|| env("HOME").map(|h| h.join(".local/share"))).map(|d| d.join("pdfcraft/dictionary"))
+        env("XDG_DATA_HOME").or_else(|| env("HOME").map(|h| h.join(".local/share"))).map(|d| d.join("xandexpdf-studio/dictionary"))
     }
 }
 

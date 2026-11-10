@@ -658,12 +658,12 @@ fn plural_forms_follow_the_rules_pdfcraft_had() {
 #[test]
 fn language_persists_and_invalid_input_keeps_current_language() {
     let mut app = crate::PdfCraftApp::default();
-    assert_eq!(app.language, AUTO);
+    assert_eq!(app.language, "pt-mz");
     assert!(app.set_option("language", "xx").is_err());
-    // Settings written before the system-locale default (no key) follow the system.
+    // Settings without a language key retain the Mozambique edition default.
     let mut legacy = crate::PdfCraftApp::default();
     legacy.restore("{}");
-    assert_eq!(legacy.language, AUTO);
+    assert_eq!(legacy.language, "pt-mz");
     needs_catalogs!();
     app.set_option("language", "JA").unwrap();
     assert_eq!(app.language, "ja");
@@ -1568,4 +1568,18 @@ fn image_paste_and_home_notifications_are_translated() {
             }
         }
     }
+}
+
+#[test]
+fn mozambique_locale_and_labels_are_embedded() {
+    let moz = Lang::from_code("pt-mz").expect("the Mozambique catalog is bundled");
+    assert_eq!(moz.name(), "Português de Moçambique");
+    assert_eq!(lang_from_tag("pt_MZ.UTF-8"), Some(moz));
+    assert_eq!(normalize_pref("PT-MZ"), Some("pt-mz"));
+    assert_eq!(tr(moz, "Combine files"), "Unir maningue documentos");
+    assert_eq!(tr(moz, "Use now"), "Bora lá");
+    assert_eq!(tr(moz, "Save"), "Guardar");
+    assert_eq!(tr(moz, "Cancel"), "Cancelar");
+    assert_eq!(tr(moz, "Delete pages"), "Apagar páginas");
+    assert_eq!(tr(moz, "Untranslated fixture"), "Untranslated fixture");
 }

@@ -260,7 +260,7 @@ impl PdfCraftApp {
             "optimize.reduce" => self.reduce_file_size(),
             "help.shortcuts" => self.dialog = Some(Dialog::Shortcuts),
             "help.about" => self.dialog = Some(Dialog::About),
-            "help.check_updates" => self.check_for_updates(),
+            "help.check_updates" => self.notify_tr("XandexPDF updates are not available yet. No upstream installer will be downloaded."),
             _ => return None,
         }
         Some(true)
