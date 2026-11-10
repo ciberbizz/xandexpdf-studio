@@ -8,8 +8,9 @@
 - Clippy com avisos como erros foi tentado e bloqueou em dois avisos preexistentes:
   `crates/edit/src/images.rs:248` e `crates/edit/src/hairlines.rs:199` (`collapsible_match`).
   Esses ficheiros não foram alterados nesta adaptação.
-- Verificação nativa da aplicação, verificação WebAssembly e testes próprios de datas:
-  iniciados, resultados ainda pendentes nesta revisão do documento.
+- Verificação nativa: `cargo check --locked -p pdfcraft` passou.
+- WebAssembly: `cargo check --locked -p pdfcraft-ui-egui --target wasm32-unknown-unknown` passou, com avisos da base.
+- Testes específicos do módulo de datas iniciados; ainda em compilação nesta revisão.
 - Não foi gerado nem testado um executável Windows; revisão visual e testes de documentos pendentes.
 
 Fork: https://github.com/ciberbizz/xandexpdf-studio
